@@ -1,0 +1,222 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_test2/provider_controller/edit_user_provider.dart';
+
+
+class EditDetailsAddressPage extends StatefulWidget {
+  String name;
+  String phone;
+  String shreet;
+  String village;
+  String pincode;
+  String district;
+  String state;
+  EditDetailsAddressPage({super.key,required this.name,required this.phone,required this.shreet, required this.village,required this.pincode,required this.district,required this.state});
+
+  @override
+  State<EditDetailsAddressPage> createState() => _EditDetailsAddressPageState();
+}
+
+class _EditDetailsAddressPageState extends State<EditDetailsAddressPage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    var _editProvider=Provider.of<EditDetailProvider>(context);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text("Edit Details",style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Form(
+          key: _editProvider.keyForm,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _editProvider.nameUpdateController,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.person,
+                        size: 25,
+                      ),
+                      isDense: true,
+                      hintText: "Enter Name",
+                      label: Text("Name"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill Name";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 10,
+                  controller: _editProvider.phoneUpdateController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.phone,
+                        size: 25,
+                      ),
+                      isDense: true,
+                      hintText: "Enter Phone",
+                      label: Text("Phone"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill Phone";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _editProvider.shreetUpdateController,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.ac_unit,
+                        size: 25,
+                      ),
+                      isDense: true,
+                      hintText: "Enter Shreet",
+                      label: Text("Shreet"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill Shreet";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _editProvider.villageNameUpdateController,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.holiday_village,
+                        size: 25,
+                      ),
+                      isDense: true,
+                      hintText: "Enter Village Name",
+                      label: Text("Village Name"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill Village Name";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 6,
+                  controller:_editProvider.pinCodeUpdateController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.pin_outlined,
+                        size: 25,
+                      ),
+                      isDense: true,
+                      hintText: "Enter Pin code",
+                      label: Text("Pin code"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill Pin code";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _editProvider.districtUpdateController,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: InputDecoration(
+                      isDense: true,
+                      prefixIcon: Icon(
+                        Icons.real_estate_agent_outlined,
+                        size: 25,
+                      ),
+                      hintText: "Enter District",
+                      label: Text("District"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill District";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _editProvider.stateUpdateController,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: InputDecoration(
+                      isDense: true,
+                      prefixIcon: Icon(
+                        Icons.account_balance_outlined,
+                        size: 25,
+                      ),
+                      hintText: "Enter State",
+                      label: Text("State"),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Fill State";
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 45,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueGrey,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
+                      onPressed: () {
+                       _editProvider.clickBottonUpdateDetailsAdd(context);
+
+                      },
+                      child: Text(
+                        "Update Now",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            )),
+      ),
+    );
+  }
+}
